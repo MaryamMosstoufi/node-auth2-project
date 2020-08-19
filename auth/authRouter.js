@@ -4,6 +4,7 @@ const router = require("express").Router();
 
 const Users = require("../users/usersModel.js");
 const { isValid } = require("../users/usersService.js");
+const constants = require('../config/constants.js');
 
 router.post("/register", (req, res) => {
   const credentials = req.body;
@@ -62,7 +63,7 @@ function signToken(user) {
     department: user.department
   }
 
-  const secret = process.env.JWT_SECRET || "is it secret and safe?";
+  const secret = constants.jwtSecret;
 
   const options = {
     expiresIn: "1d"
